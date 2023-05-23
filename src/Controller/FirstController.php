@@ -11,6 +11,6 @@ class FirstController extends AbstractController
     #[Route('/', name: 'app_template')]
     public function index(): Response
     {
-        return $this->render('first/index.html.twig',);
+        return $this->render('first/index.html.twig');
     }
 }

@@ -1,0 +1,23 @@
+nav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+ul, .choose-country{
+display:flex;
+justify-content: space-between;
+}
+
+li{
+    margin-right: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.separateur-menu{
+    border-bottom: 1px solid #e5e5e5;
+}
+ul{
+    margin:20px 0;
+}
