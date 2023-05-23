@@ -6,10 +6,20 @@
 		<li>À PROPOS</li>
 
 	</ul>
-	<div class="choose-country">
-		<li>FR</li>
-		<li>EN</li>
-		<li>ES</li>
-	</div>
-</nav>
-<div class="separateur-menu"></div>
+
+	{% if app.user %}
+		<div class="choose-country">
+			<li>
+				<a href="{{path('app_logout')}}">Deconnexion</a>
+			</li>
+		{% else %}
+			<li>
+				<a href="{{path('app_inscription')}}">Inscription</a>
+			</li>
+
+			<li>
+				<a href="{{path('app_login')}}">Connexion</a>
+			</li>
+		</div>
+	{% endif %}
+</li></div></nav><div class="separateur-menu"></div>
