@@ -8,11 +8,14 @@
 	</ul>
 
 	{% if app.user %}
-		<div class="choose-country">
+		<div class="login-nav">
 			<li>
 				<a href="{{path('app_logout')}}">Deconnexion</a>
 			</li>
-		{% else %}
+
+		</div>
+	{% else %}
+		<div class="login-nav">
 			<li>
 				<a href="{{path('app_inscription')}}">Inscription</a>
 			</li>
@@ -22,4 +25,12 @@
 			</li>
 		</div>
 	{% endif %}
-</li></div></nav><div class="separateur-menu"></div>
+	{% if app.user is not null and  'ROLE_ADMIN' in app.user.roles %}
+		<div class="login-nav">
+			<li>
+				<a href="{{path('app_users')}}">Admin</a>
+			</li>
+		</div>
+	{% endif %}
+</nav>
+<div class="separateur-menu"></div>

@@ -15,7 +15,9 @@ security:
       security: false
     main:
       lazy: true
-
+      remember_me:
+        secret: "%kernel.secret%"
+        always_remember_me: true
       form_login:
         login_path: app_login
         check_path: app_login

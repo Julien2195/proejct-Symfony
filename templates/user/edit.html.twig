@@ -1,0 +1,68 @@
+{% extends 'security/baseAdmin.html.twig' %}
+
+
+{% block body %}
+
+
+	<section>
+		<div class="container login h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-lg-12 col-xl-11">
+					<div class="text-black" style="border-radius: 25px;">
+						<div class="card-body p-md-5">
+							<div class="row justify-content-center">
+								<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+									<p class="color-title-login text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit User</p>
+
+
+									{{ form_start(form) }}
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<label for="firstname">Email</label>
+										<div class="form-outline flex-fill mb-0">
+											{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'nom'}}) }}
+										</div>
+									</div>
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<label for="firstname">Prenom</label>
+										<div class="form-outline flex-fill mb-0">
+											{{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'nom'}})}}
+
+
+										</div>
+									</div>
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<label for="firstname">Nom</label>
+										<div class="form-outline flex-fill mb-0">
+											{{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'nom'}})}}
+										</div>
+									</div>
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<label for="firstname">Adresse</label>
+										<div class="form-outline flex-fill mb-0">
+											{{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'nom'}})}}
+										</div>
+									</div>
+
+
+									<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+
+										<button class="btn btn-primary btn-lg">{{ button_label|default('Save') }}</button>
+									</div>
+
+									{{ form_end(form) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{# {{ include('user/_delete_form.html.twig') }} #}
+{% endblock %}

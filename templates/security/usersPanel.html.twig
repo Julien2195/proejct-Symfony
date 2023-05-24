@@ -1,0 +1,48 @@
+{% extends 'security/baseAdmin.html.twig' %}
+{% block title %}Utilisateurs
+	<a href="{{ path('app_user_new') }}" class="btn btn-success">Créer un utilisateur</a>
+
+
+{% endblock %}
+{% block body %}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Email</th>
+				<th scope="col">Prenom</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Roles</th>
+				<th scope="col">Supprimer</th>
+				<th scope="col">Modifier</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users  %}
+				<tr>
+					<th scope="row">{{user.id}}</th>
+					<td>{{user.email}}</td>
+					<td>{{user.prenom}}</td>
+					<td>{{user.nom}}</td>
+					<td>
+						{% for role in user.roles %}
+							{{role}}
+						{% endfor %}
+					</td>
+					<td>
+						<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+							<button type="submit" class="btn btn-danger">x</button>
+
+						</form>
+
+					</td>
+					<td>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
+					</td>
+				</tr>
+			</td>
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}
