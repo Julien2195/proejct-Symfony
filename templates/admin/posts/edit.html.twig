@@ -1,4 +1,4 @@
-{% extends 'security/baseAdmin.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
 
 
 {% block body %}
@@ -12,7 +12,7 @@
 						<div class="card-body p-md-5">
 							<div class="row justify-content-center">
 								<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-									<p class="color-title-login text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Ajouter un article</p>
+									<p class="color-title-login text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">Editer l'article</p>
 
 
 									{{ form_start(form) }}
@@ -38,6 +38,10 @@
 
 									<div class="container-form-new">
 										<label for="autor">Description :</label>
+										<p id="caractereCount">0</p>
+										<script>
+											var contentInput = document.getElementById('content');
+										</script>
 										<div class="d-flex flex-row align-items-center mb-4">
 
 											<div class="form-outline flex-fill mb-0">

@@ -20,8 +20,11 @@ class AdminController extends  AbstractController
     public function users(EntityManagerInterface $em)
 
     {
+        // if ($this->isGranted('ROLE_ADMIN') == false) {
+        //     return $this->redirectToRoute("app_home");
+        // }
         $users = $em->getRepository(User::class)->findAll();
-        return $this->render('security/usersPanel.html.twig', [
+        return $this->render('/admin/adminPanel.html.twig', [
             'users' => $users,
         ]);
     }
@@ -41,13 +44,13 @@ class AdminController extends  AbstractController
     #[Route('/admin', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('/security/usersPanel.html.twig', [
+        return $this->render('/admin/usersPanel.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
     }
 
     //Créer un utilisateur
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository): Response
     {
         $user = new User();
@@ -60,14 +63,14 @@ class AdminController extends  AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/new.html.twig', [
+        return $this->renderForm('/admin/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
 
     //Editer un utilisateur
-    #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $form = $this->createForm(User1Type::class, $user);
@@ -80,7 +83,7 @@ class AdminController extends  AbstractController
             return $this->redirectToRoute('app_users', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/edit.html.twig', [
+        return $this->renderForm('/admin/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
