@@ -1,0 +1,48 @@
+{% extends 'security/baseAdmin.html.twig' %}
+
+{% block title %}Posts index
+{% endblock %}
+
+{% block body %}
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Auteur</th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Content</th>
+				<th>Slug</th>
+				<th>Date</th>
+				<th>Visible</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for post in posts %}
+				<tr>
+					<td>{{ post.id }}</td>
+					<td>{{ post.auteur }}</td>
+					<td>{{ post.titre }}</td>
+					<td>{{ post.description }}</td>
+					<td>{{ post.content }}</td>
+					<td>{{ post.slug }}</td>
+					<td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ post.visible ? 'Yes' : 'No' }}</td>
+					<td>
+						<a href="{{ path('app_posts_show', {'id': post.id}) }}">Voir</a>
+						<a href="{{ path('app_posts_edit', {'id': post.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_posts_new') }}">Create new</a>
+{% endblock %}

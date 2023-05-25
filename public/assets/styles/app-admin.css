@@ -11689,3 +11689,31 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+
+/* CUSTOMIZE */
+
+.container-form-new {
+  text-align: center;
+}
+.article-auteur,
+.article-titre {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.article-titre {
+  width: 600px;
+  height: 40px;
+  margin-left: 27px;
+}
+.article-description {
+  width: 600px;
+  height: 100px;
+  margin-left: 27px;
+}
+
+textarea {
+  width: 600px;
+  height: 300px;
+}
