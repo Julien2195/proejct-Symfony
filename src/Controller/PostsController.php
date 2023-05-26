@@ -21,7 +21,7 @@ class PostsController extends AbstractController
         $pagination = $paginator->paginate(
             $postsRepository->paginationQuery(),
             $request->query->get('page', 1),
-            1
+            5
         );
         return $this->render('admin/posts/index.html.twig', [
             // trier par date
@@ -37,6 +37,16 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+                $post->setImage($newFilename);
+            }
             $slugify = new Slugify();
             $post->setSlug($slugify->slugify($post->getTitre()));
             $postsRepository->save($post, true);
@@ -65,9 +75,21 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+                $post->setImage($newFilename);
+            }
+
             $slugify = new Slugify();
             $post->setSlug($slugify->slugify($post->getTitre()));
             $postsRepository->save($post, true);
+
 
             return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
         }

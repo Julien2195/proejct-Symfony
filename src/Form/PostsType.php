@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\Posts;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class PostsType extends AbstractType
 {
@@ -24,22 +26,28 @@ class PostsType extends AbstractType
                     'class' => 'article-titre'
                 ]
             ])
-            ->add('description', null, [
+            ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'article-description'
                 ]
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', CKEditorType::class, [
                 'attr' => [
                     'class' => 'article-content'
+
                 ]
             ])
-            // ->add('slug')
+
             ->add('date')
             ->add('visible', CheckboxType::class, [
                 'attr' => [
-                    'class' => 'article-visible'
-                ]
+                    'class' => 'form-check-input',
+                ],
+            ])
+            ->add('image', FileType::class, [
+                'label' => "Image",
+                'required' => true,
+                'data_class' => null,
             ]);
     }
 

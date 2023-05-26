@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\PostsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: PostsRepository::class)]
 class Posts
@@ -34,6 +37,9 @@ class Posts
 
     #[ORM\Column]
     private ?bool $visible = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -120,6 +126,21 @@ class Posts
     public function setVisible(bool $visible): self
     {
         $this->visible = $visible;
+
+        return $this;
+    }
+
+    // Images
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+
+        $this->image = $image;
 
         return $this;
     }

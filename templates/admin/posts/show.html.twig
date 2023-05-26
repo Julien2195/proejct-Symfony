@@ -17,6 +17,10 @@
 				<td>{{ post.auteur }}</td>
 			</tr>
 			<tr>
+				<th>Image</th>
+				<td><img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.image }}" width="100"></td>
+			</tr>
+			<tr>
 				<th>Titre</th>
 				<td>{{ post.titre }}</td>
 			</tr>
