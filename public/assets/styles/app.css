@@ -37,6 +37,56 @@ li, a {
   border-bottom: 1px solid #e5e5e5;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 230px;
+  height: auto;
+}
+
+.banniere img {
+  width: 100%;
+  height: 550px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banniere {
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.banniere::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 550px;
+  background-color: rgba(0, 0, 0, 0.2); /* Couleur noire semi-transparente */
+  z-index: 1;
+}
+
+.infos-banniere {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5em;
+  font-family: "Poppins", sans-serif;
+}
+
+.infos-banniere a {
+  display: flex;
+  justify-content: center;
+  margin-right: 0;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -71,16 +121,20 @@ img.active {
   font-size: 50px;
   margin: 0 15px;
   cursor: pointer;
-  color: #fff;
-  position: absolute;
+  color: rgba(255, 255, 255, 0.737254902);
   top: 50%;
-} 
+}
+
 .left {
   left: 0;
+  position: absolute;
+  z-index: 2;
 }
 
 .right {
   right: 0;
+  position: absolute;
+  z-index: 2;
 }
 
 .left img,
@@ -97,56 +151,24 @@ img.active {
 .btn-radio {
   position: relative;
   top: -50px;
-  left: 48%;
+  left: 49%;
   transform: translate(-50%, -50%);
   cursor: pointer;
   padding: 10px;
   border-radius: 50%;
   border: 2px solid #fff;
+  z-index: 2;
 }
 
 .btn-radio.margin {
   margin-left: 14px;
 }
 
-header {
-  display: flex;
-  justify-content: center;
+.btn-active, .btn-radio.active {
+  border: 2px solid #40d3dc;
+  background-color: #254058;
 }
 
-img {
-  width: 230px;
-  height: auto;
-}
-
-.banniere img {
-  width: 100%;
-  height: 550px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.banniere {
-  position: relative;
-  margin-bottom: 150px;
-}
-
-.infos-banniere {
-  text-align: center;
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.5em;
-  font-family: "Poppins", sans-serif;
-}
-
-.infos-banniere a {
-  display: flex;
-  justify-content: center;
-  margin-right: 0;
-}
 
 section {
   margin: 0 auto;

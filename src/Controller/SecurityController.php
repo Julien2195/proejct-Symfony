@@ -18,10 +18,10 @@ class SecurityController extends AbstractController
 
     public function index()
     {
-        return $this->render('index.html.twig');
+        return $this->render('public/index.html.twig');
     }
 
-    #[Route('/inscription', name: "app_inscription")]
+    #[Route('inscription', name: "app_inscription")]
     public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
         // 1) build the form
@@ -55,7 +55,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+        return $this->render('public/inscription.html.twig', ['form' => $form->createView()]);
     }
 
     #[Route(path: '/login', name: 'app_login')]
@@ -70,7 +70,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('public/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]

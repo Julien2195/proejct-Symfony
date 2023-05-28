@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   const slider = document.querySelector(".slider");
-  fetch("https://127.0.0.1:8000/admin/API/slider")
+  fetch("https://localhost:8000/admin/API/slider")
     .then((response) => response.json())
     .then((data) => {
       const nbrSlide = data.length;
@@ -14,18 +14,33 @@ window.addEventListener("DOMContentLoaded", (event) => {
         img.src = "/images/" + data[i].image;
         img.alt = data[i].titre;
         slider.append(img);
+      }
 
-        //Creation des boutons radio
+      let count = 0;
+
+      //Creation des boutons radio
+      for (let i = 0; i < data.length; i++) {
         const btn = document.createElement("label");
+
         btn.setAttribute("for", "btn");
-        if (i > 0) {
-          btn.classList.add("btn-radio") + btn.classList.add("margin");
-        } else {
-          btn.classList.add("btn-radio");
+        btn.classList.add("btn-radio");
+        if (i != 0) {
+          btn.classList.add("margin");
         }
         slider.append(btn);
       }
 
+      function btnAutomatic() {
+        const btns = document.querySelectorAll(".btn-radio");
+        btns.forEach((btn, index) => {
+          if (index === count) {
+            btn.classList.add("btn-active");
+          } else {
+            btn.classList.remove("btn-active");
+          }
+        });
+      }
+      btnAutomatic();
       //Ajout des informations sur la bannière
       const banniere = document.querySelector(".banniere");
       const infoBanniere = document.querySelector(".infos-banniere");
@@ -45,20 +60,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const suivant = document.querySelector(".right");
       const precedent = document.querySelector(".left");
 
-      let count = 0;
-
-      function slideSuivante() {
-        items[count].classList.remove("active");
-        if (count < nbrSlide - 1) {
-          count++;
-        } else {
-          count = 0;
-        }
-        items[count].classList.add("active");
-        console.log(count);
-      }
       setInterval(slideSuivante, 8000);
       suivant.addEventListener("click", slideSuivante);
+
+      function updateInfoBanniere() {
+        infoBanniere.innerHTML = "";
+
+        const h3 = document.createElement("h3");
+        const p = document.createElement("p");
+
+        h3.innerHTML = data[count].titre;
+        p.innerHTML = data[count].description;
+
+        infoBanniere.appendChild(h3);
+        infoBanniere.appendChild(p);
+      }
+      updateInfoBanniere();
 
       function slidePrecedente() {
         items[count].classList.remove("active");
@@ -68,7 +85,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
           count = nbrSlide - 1;
         }
         items[count].classList.add("active");
+        btnAutomatic();
+        updateInfoBanniere();
       }
       precedent.addEventListener("click", slidePrecedente);
+
+      function slideSuivante() {
+        items[count].classList.remove("active");
+        if (count < nbrSlide - 1) {
+          count++;
+        } else {
+          count = 0;
+        }
+        btnAutomatic();
+        items[count].classList.add("active");
+        updateInfoBanniere();
+      }
     });
 });
