@@ -1,0 +1,38 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Banniere
+{% endblock %}
+
+{% block body %}
+
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ slider.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ slider.titre }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ slider.description }}</td>
+			</tr>
+			<tr>
+				<th>Image</th>
+				<td><img class="img-cover" src="{{ asset('images/' ~ slider.image) }}" alt="{{ slider.image }}"></td>
+			</tr>
+
+
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_slider_index') }}">Retour à la liste des Banniere !</a>
+
+	<form method="post" action="{{ path('app_posts_delete', {'id': slider.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ slider.id) }}">
+		<button class="btn btn-danger">Supprimer</button>
+	</form>
+{% endblock %}

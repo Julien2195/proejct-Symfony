@@ -20,9 +20,7 @@ class AdminController extends  AbstractController
     public function users(EntityManagerInterface $em)
 
     {
-        // if ($this->isGranted('ROLE_ADMIN') == false) {
-        //     return $this->redirectToRoute("app_home");
-        // }
+
         $users = $em->getRepository(User::class)->findAll();
         return $this->render('/admin/adminPanel.html.twig', [
             'users' => $users,
