@@ -29,7 +29,7 @@ class PostsType extends AbstractType
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'article-description',
-                    'maxlength' => 150
+                    'maxlength' => 300
                 ]
             ])
             ->add('content', CKEditorType::class, [

@@ -107,7 +107,7 @@ class SliderController extends AbstractController
         return $this->redirectToRoute('app_slider_index', [], Response::HTTP_SEE_OTHER);
     }
     // API Banniere
-    #[Route('admin/API/slider', name: 'app_api_slider', methods: ['GET'])]
+    #[Route('/API/slider', name: 'app_api_slider', methods: ['GET'])]
     public function api(SliderRepository $sliderRepository, SerializerInterface $serialiser): Response
     {
         $sliders = $sliderRepository->findAll();

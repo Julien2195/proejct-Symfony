@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   const slider = document.querySelector(".slider");
-  fetch("https://localhost:8000/admin/API/slider")
+  fetch("https://localhost:8000/API/slider")
     .then((response) => response.json())
     .then((data) => {
       const nbrSlide = data.length;

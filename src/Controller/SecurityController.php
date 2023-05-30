@@ -6,6 +6,7 @@ use App\Entity\AboutMe;
 use App\Entity\User;
 use App\Form\InscriptionUserType;
 use App\Repository\AboutMeRepository;
+use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,13 +19,14 @@ class SecurityController extends AbstractController
 {
     #[Route(path: '/', name: "app_home")]
 
-    public function index(AboutMeRepository $aboutMeRepository)
+    public function index(AboutMeRepository $aboutMeRepository, PostsRepository $postsRepository)
     {
 
         $aboutMe = $aboutMeRepository->findAll();
-
+        $posts = $postsRepository->findAll();
         return $this->render('public/index.html.twig', [
             'aboutMe' => $aboutMe,
+            'posts' => $posts
         ]);
     }
 

@@ -23,7 +23,7 @@ class Posts
     #[ORM\Column(length: 100)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 300)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -40,6 +40,9 @@ class Posts
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $alt = null;
 
     public function getId(): ?int
     {
@@ -141,6 +144,18 @@ class Posts
     {
 
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

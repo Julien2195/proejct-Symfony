@@ -49,6 +49,7 @@ class PostsController extends AbstractController
             }
             $slugify = new Slugify();
             $post->setSlug($slugify->slugify($post->getTitre()));
+            $post->setAlt($post->getTitre());
             $postsRepository->save($post, true);
 
             return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
