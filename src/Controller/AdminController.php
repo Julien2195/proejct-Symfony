@@ -86,4 +86,35 @@ class AdminController extends  AbstractController
             'form' => $form,
         ]);
     }
+
+    //Exporter les utilisateurs Excel
+    #[Route('/admin/export/csv', name: 'app_user_export', methods: ['GET'])]
+
+    public function export(UserRepository $userRepository,): Response
+    {
+        $users = $userRepository->findAll();
+        $response = new Response();
+
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="users.csv"');
+        //configurer l'en-tête pour chaque celule
+        $fp = fopen('php://output', 'w');
+
+        $head = ['id', 'email', 'roles'];
+
+        fputcsv($fp, $head, ';');
+        foreach ($users as $user) {
+            $userData = [
+                'id' => $user->getId(),
+                'email' => $user->getEmail(),
+                implode(',', $user->getRoles()),
+            ];
+            fputcsv($fp, $userData, ';');
+        }
+
+        fclose($fp);
+
+
+        return $response;
+    }
 }

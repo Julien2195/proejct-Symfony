@@ -28,6 +28,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           btn.classList.add("margin");
         }
         slider.append(btn);
+        btnClick();
       }
 
       function btnAutomatic() {
@@ -38,6 +39,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
           } else {
             btn.classList.remove("btn-active");
           }
+        });
+      }
+      function btnClick() {
+        const btns = document.querySelectorAll(".btn-radio");
+        btns.forEach((btn, index) => {
+          btn.addEventListener("click", () => {
+            items[count].classList.remove("active");
+            count = index;
+            items[count].classList.add("active");
+            btnAutomatic();
+            updateInfoBanniere();
+          });
         });
       }
       btnAutomatic();
@@ -60,7 +73,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const suivant = document.querySelector(".right");
       const precedent = document.querySelector(".left");
 
-      setInterval(slideSuivante, 8000);
+      setInterval(slideSuivante, 10000);
       suivant.addEventListener("click", slideSuivante);
 
       function updateInfoBanniere() {
