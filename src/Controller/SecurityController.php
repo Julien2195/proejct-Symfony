@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\AboutMe;
 use App\Entity\User;
 use App\Form\InscriptionUserType;
+use App\Repository\AboutMeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +18,17 @@ class SecurityController extends AbstractController
 {
     #[Route(path: '/', name: "app_home")]
 
-    public function index()
+    public function index(AboutMeRepository $aboutMeRepository)
     {
-        return $this->render('index.html.twig');
+
+        $aboutMe = $aboutMeRepository->findAll();
+
+        return $this->render('public/index.html.twig', [
+            'aboutMe' => $aboutMe,
+        ]);
     }
 
-    #[Route('/inscription', name: "app_inscription")]
+    #[Route('inscription', name: "app_inscription")]
     public function register(Request $request, UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $entityManager)
     {
         // 1) build the form
@@ -55,7 +62,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+        return $this->render('public/inscription.html.twig', ['form' => $form->createView()]);
     }
 
     #[Route(path: '/login', name: 'app_login')]
@@ -70,7 +77,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('public/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]

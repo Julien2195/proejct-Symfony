@@ -11715,7 +11715,7 @@ body {
 }
 .article-description {
   width: 600px;
-  height: 100px;
+  height: 200px;
   margin-left: 27px;
 }
 .form-radio {
@@ -11732,4 +11732,69 @@ label {
 }
 .form-check-input {
   width: 40px;
+}
+.img-cover {
+  object-fit: cover;
+  max-width: 700px;
+  width: 100%;
+  height: 300px;
+}
+
+.article-auteur {
+  font-size: 1.4em;
+  border-bottom: 1.5px solid rgba(245, 248, 255, 0.4);
+  padding: 0.8rem 2rem 0.8rem 0rem;
+  outline: none;
+  transition: all 0.4s;
+}
+label .count-auteur {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 0;
+  top: 50%;
+  height: 1.6rem;
+  width: 1.6rem;
+  background: rgba(245, 248, 255, 0.2);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.d-flex {
+  position: relative;
+}
+span.btn {
+  position: absolute;
+
+  margin-left: 5px;
+}
+span.position {
+  position: absolute;
+  margin-left: 5px;
+  bottom: 8px;
+}
+
+.container.global.aboutme {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+}
+.container.admin.left.aboutme,
+.container.admin.right.aboutme {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container.admin h2 {
+  text-align: center;
+  font-size: 1.4em;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+.container.admin img {
+  object-fit: cover;
+}
+.textarea.aboutme {
+  width: 500px;
 }

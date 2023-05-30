@@ -17,13 +17,13 @@ class Posts
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $auteur = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 150)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]

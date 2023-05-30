@@ -5,6 +5,9 @@
 
 
 	<section>
+		{% block javascript %}
+			<script src="{{ asset('assets/js/countCaracterePosts.js')}}"></script>
+		{% endblock %}
 		<div class="container login h-100">
 			<div class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-lg-12 col-xl-11">
@@ -15,21 +18,22 @@
 
 						{{ form_start(form) }}
 						<div class="container-form-new">
-							<label for="autor">Auteur :</label>
+							<label class="auteur" for="autor">Auteur :</label>
 
 							<div class="d-flex flex-row align-items-center mb-4">
 								<div class="form form-outline flex-fill mb-0">
 									{{ form_widget(form.auteur)}}
+									<span class="btn btn-success count-auteur">50</span>
 								</div>
 							</div>
 						</div>
-
 						<div class="container-form-new">
-							<label for="autor">Titre :</label>
+							<label class="titre" for="autor">Titre :</label>
 							<div class="d-flex flex-row align-items-center mb-4">
-
 								<div class="form-outline flex-fill mb-0">
 									{{ form_widget(form.titre) }}
+									<span class="btn btn-success count-titre">100</span>
+
 								</div>
 							</div>
 						</div>
@@ -42,10 +46,11 @@
 							</div>
 						</div>
 						<div class="container-form-new">
-							<label for="autor">Description :</label>
+							<label class="description" for="autor">Description :</label>
 							<div class="d-flex flex-row align-items-center mb-4">
 								<div class="form-outline flex-fill mb-0">
 									{{ form_widget(form.description) }}
+									<span class="position btn btn-success count-description">150</span>
 								</div>
 							</div>
 						</div>

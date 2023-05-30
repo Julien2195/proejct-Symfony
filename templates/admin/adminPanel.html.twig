@@ -1,6 +1,7 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 {% block title %}Utilisateurs
 	<a href="{{ path('app_user_new') }}" class="btn btn-success">Créer un utilisateur</a>
+	<a href="{{ path('app_user_export') }}" class="btn btn-secondary">Export Excel</a>
 
 
 {% endblock %}
@@ -14,8 +15,9 @@
 				<th scope="col">Prenom</th>
 				<th scope="col">Nom</th>
 				<th scope="col">Roles</th>
-				<th scope="col">Supprimer</th>
 				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -31,6 +33,9 @@
 
 					</td>
 					<td>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
+					</td>
+					<td>
 						<form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
 							<button type="submit" class="btn btn-danger">x</button>
@@ -38,9 +43,7 @@
 						</form>
 
 					</td>
-					<td>
-						<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
-					</td>
+
 				</tr>
 			</td>
 		{% endfor %}
