@@ -72,6 +72,7 @@ class SliderController extends AbstractController
             'slider' => $slider
         ]);
     }
+    // Modifier la banniere
     #[Route('admin/api/slider/edit/{id}', name: 'app_slider_edit', methods: ['GET', 'POST'])]
     public function edit(Slider $slider, Request $request, SliderRepository $sliderRepository): Response
     {

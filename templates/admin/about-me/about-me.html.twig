@@ -1,0 +1,39 @@
+{% extends "admin/baseAdmin.html.twig" %}
+
+{% block body %}
+	<div class="container global aboutme">
+		<div class="container admin left aboutme">
+			<h2>Editer la page "À propos de moi"</h2>
+			{{form_start(form)}}
+			<div class="container-form-new">
+				<label for="autor">Image :</label>
+				<div class="d-flex flex-row align-items-center mb-4">
+
+					<div class="form-outline flex-fill mb-0">
+						{{ form_widget(form.image) }}
+					</div>
+				</div>
+			</div>
+
+			<div class="container-form-new">
+				<label class="description" for="autor">Description :</label>
+				<div class="d-flex flex-row align-items-center mb-4">
+					<div class="form-outline flex-fill mb-0">
+						{{ form_widget(form.description) }}
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-primary" type="submit">Créer</button>
+			{{form_end(form)}}
+
+		</div>
+		<div class="line aboutme"></div>
+		<div class="container admin right aboutme">
+			<h2>Résultat</h2>
+			{% for data in aboutMe %}
+				<img class="avatar" src="{{ asset('images/' ~ data.image)}}" alt"image avatar" width="333px" height="222px"/>
+				<p>{{data.description}}</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

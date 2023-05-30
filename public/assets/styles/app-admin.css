@@ -11773,3 +11773,28 @@ span.position {
   margin-left: 5px;
   bottom: 8px;
 }
+
+.container.global.aboutme {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+}
+.container.admin.left.aboutme,
+.container.admin.right.aboutme {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container.admin h2 {
+  text-align: center;
+  font-size: 1.4em;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+.container.admin img {
+  object-fit: cover;
+}
+.textarea.aboutme {
+  width: 500px;
+}

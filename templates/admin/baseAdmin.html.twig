@@ -22,51 +22,19 @@
 				<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 					<div class="sb-sidenav-menu">
 						<div class="nav">
-							<div class="sb-sidenav-menu-heading">Admin</div>
-							<a class="nav-link" href="{{path('app_users')}}">
-								<div class="sb-nav-link-icon">
-									<i class="fas fa-tachometer-alt"></i>
-								</div>
-								Utilisateurs
-
-							</a>
-
-							<div class="sb-sidenav-menu-heading">Posts</div>
-							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-								<div class="sb-nav-link-icon">
-									<i class="fas fa-columns"></i>
-								</div>
-								Posts
-								<div class="sb-sidenav-collapse-arrow">
-									<i class="fas fa-angle-down"></i>
-								</div>
-							</a>
-							<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-								<nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link" href="{{path('app_posts_index')}}">Voir les posts</a>
-									<a class="nav-link" href="{{path('app_posts_new')}}">Ajouter un post</a>
+							{% include "includes/PanelAdmin/user.html.twig" %}
+							{# utilisateurs #}
 
 
-								</nav>
-							</div>
+							{% include "includes/PanelAdmin/posts.html.twig" %}
+							{# Articles #}
+							<div class="sb-sidenav-menu-heading">public</div>
 
+							{% include "includes/PanelAdmin/slider.html.twig" %}
+							{# Banniere #}
 
-							<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBanners" aria-expanded="false" aria-controls="collapseBanners">
-								<div class="sb-nav-link-icon">
-									<i class="fas fa-columns"></i>
-								</div>
-								Bannières
-								<div class="sb-sidenav-collapse-arrow">
-									<i class="fas fa-angle-down"></i>
-								</div>
-							</a>
-							<div class="collapse" id="collapseBanners" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-								<nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link" href="{{path('app_slider_index')}}">Voir les bannières</a>
-									<a class="nav-link" href="{{path('app_slider_new')}}">Ajouter une banniere</a>
-								</nav>
-							</div>
-
+							{% include "includes/PanelAdmin/about-me.html.twig" %}
+							{# À propos de moi #}
 
 						</div>
 
