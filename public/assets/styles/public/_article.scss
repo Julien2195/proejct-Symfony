@@ -1,0 +1,85 @@
+.container.article{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.container.article h2{
+    margin: 80px auto 30px auto;
+    font-family: "Prata", sans-serif;
+    font-size: 2.3em;
+    letter-spacing: 1.4px;
+    font-weight: normal;
+}
+
+.container.article .date {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 270px;
+    margin: 50px auto;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #999;
+    letter-spacing: 1.2px;
+    
+}
+
+.container.article .date::before, .container.article .date::after{
+    content: "";
+    display: block;
+    width: 50px;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.image.paysage.article {
+    width: 1200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.avatar{
+float: left;
+border-radius: 50%;
+margin-top: 13px;
+}
+.infos-user{
+    display: flex;
+}
+
+.infos-user img{
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+}
+.container.infos-name{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+     padding-top:3px;   
+     margin-left: 10px;
+}
+ .written{
+    font-family: "Lora", sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: #888888;
+}
+.name.user{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    font-weight: 700;
+}
+
+.fa-envelope.article{
+    margin-right: 0;
+}
+
+.contenu.article{
+    font-family: "Lora", sans-serif;
+    font-size: 18px;
+    text-align: justify;
+}

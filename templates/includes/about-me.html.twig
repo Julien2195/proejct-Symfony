@@ -1,7 +1,7 @@
 <aside>
 	<h3 class="title aboutMe">À propos</h3>
 	{% for data in aboutMe %}
-		<img class="avatar" src="{{asset('images/' ~ data.image ) }}" alt="avatar">
+		<img class="picture-aboutMe" src="{{asset('images/' ~ data.image ) }}" alt="avatar">
 		<div class="description-aside">
 			<p>{{data.description}}</p>
 		</div>

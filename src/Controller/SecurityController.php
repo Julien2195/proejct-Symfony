@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\AboutMe;
+use App\Entity\Posts;
 use App\Entity\User;
 use App\Form\InscriptionUserType;
 use App\Repository\AboutMeRepository;
 use App\Repository\PostsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,12 +23,12 @@ class SecurityController extends AbstractController
 
     public function index(AboutMeRepository $aboutMeRepository, PostsRepository $postsRepository)
     {
-
         $aboutMe = $aboutMeRepository->findAll();
         $posts = $postsRepository->findAll();
         return $this->render('public/index.html.twig', [
             'aboutMe' => $aboutMe,
-            'posts' => $posts
+            'posts' => $posts,
+
         ]);
     }
 
@@ -86,5 +88,17 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    //Montrer un post public
+    #[Route('post/{id}', name: 'app_post_show', methods: ['GET'])]
+    public function showPost(Posts $post, User $user): Response
+    {
+
+        return $this->render('/public/post.html.twig', [
+
+            'post' => $post,
+            'user' => $user
+        ]);
     }
 }

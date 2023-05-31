@@ -11,6 +11,7 @@
 		<thead>
 			<tr>
 				<th scope="col">ID</th>
+				<th scope="col">Avatar</th>
 				<th scope="col">Email</th>
 				<th scope="col">Prenom</th>
 				<th scope="col">Nom</th>
@@ -24,6 +25,7 @@
 			{% for user in users  %}
 				<tr>
 					<th scope="row">{{user.id}}</th>
+					<th scope="row"><img src="{{asset('images/' ~ user.avatar)}}" alt="{{user.prenom}}" width="50px" height="auto"/></th>
 					<td>{{user.email}}</td>
 					<td>{{user.prenom}}</td>
 					<td>{{user.nom}}</td>

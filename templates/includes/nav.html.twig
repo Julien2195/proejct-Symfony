@@ -1,38 +1,47 @@
 <nav>
-	<ul>
-		<li>ACCUEIL</li>
-		<li>DESTINATIONS</li>
-		<li>CONSEIL & ASTUCES</li>
-		<li>À PROPOS</li>
-
-	</ul>
-
-	{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-		<div class="login-nav nav-un">
+	<div class="nav-container">
+		<ul>
 			<li>
-				<a href="{{path('app_logout')}}">Deconnexion</a>
+				<a href="{{path('app_home')}}">ACCUEIL</a>
 			</li>
 			<li>
-				<a href="{{path('app_users')}}">Admin</a>
+				<a href="#">DESTINATIONS</a>
 			</li>
-		</div>
-	{% elseif app.user %}
-		<div class="login-nav">
 			<li>
-				<a href="{{path('app_logout')}}">Deconnexion</a>
+				<a href="#">CONSEIL & ASTUCES</a>
 			</li>
-		</div>
-	{% else %}
-		<div class="login-nav nav-un">
-
 			<li>
-				<a href="{{path('app_inscription')}}">Inscription</a>
+				<a href="#">À PROPOS</a>
 			</li>
 
-			<li>
-				<a href="{{path('app_login')}}">Connexion</a>
-			</li>
-		</div>
-	{% endif %}
+		</ul>
+
+		{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+			<div class="login-nav nav-un">
+				<li>
+					<a href="{{path('app_logout')}}">Deconnexion</a>
+				</li>
+				<li class="admin nav">
+					<a href="{{path('app_users')}}">Admin</a>
+				</li>
+			</div>
+		{% elseif app.user %}
+			<div class="login-nav">
+				<li>
+					<a href="{{path('app_logout')}}">Deconnexion</a>
+				</li>
+			</div>
+		{% else %}
+			<div class="login-nav nav-un">
+
+				<li>
+					<a href="{{path('app_inscription')}}">Inscription</a>
+				</li>
+
+				<li>
+					<a href="{{path('app_login')}}">Connexion</a>
+				</li>
+			</div>
+		{% endif %}
+	</div>
 </nav>
-<div class="separateur-menu"></div>

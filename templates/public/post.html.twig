@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body  %}
+	{% include 'includes/nav.html.twig'%}
+
+	<div class="container article ">
+		<h2>{{post.titre}}</h2>
+
+		<span class="date article-recent">{{ post.date|localizeddate }}</span>
+
+
+		<img class="image paysage article" src="{{asset('images/' ~ post.image )}}" alt="{{post.alt}}">
+
+		<div class="container infos-user">
+			<img class="avatar" src="{{asset('images/' ~ user.avatar)}}" alt="{{user.prenom}}"/>
+			<div class="container infos-name">
+				<span class="written">Written by</span>
+				<span class="name user">{{user.prenom}}</span>
+			</div>
+			<div class="icon reseaux-sociaux">
+				<a href="#">
+					<i class="fa-brands fa-facebook-f"></i>
+				</a>
+				<a href="#">
+					<i class="fa-brands fa-pinterest-p"></i>
+				</a>
+				<a href="#">
+					<i class="fa-regular fa-envelope article"></i>
+				</a>
+			</div>
+		</div>
+		<div class="contenu article">
+			<p>{{post.content|raw}}</p>
+		</div>
+	</div>
+</div></div>{% endblock %}

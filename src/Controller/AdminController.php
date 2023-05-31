@@ -56,6 +56,16 @@ class AdminController extends  AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fileName = $form->get('image')->getData();
+            $newFilename = uniqid() . '' . $fileName->guessExtension();
+
+            $fileName->move(
+                $this->getParameter(
+                    'imges_directory',
+                    $newFilename
+                )
+            );
+            $user->setAvatar($newFilename);
             $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -74,8 +84,17 @@ class AdminController extends  AbstractController
         $form = $this->createForm(User1Type::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fileName = $form->get('avatar')->getData();
+            if ($fileName) {
+                $newFilename = uniqid() . '.' . $fileName->guessExtension();
+                $fileName->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+                $user->setAvatar($newFilename);
+            }
             $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_users', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);

@@ -60,7 +60,7 @@ class PostsController extends AbstractController
             'form' => $form,
         ]);
     }
-    //Montrer un post
+    //Montrer un post ADMIN
     #[Route('/admin/post/{id}', name: 'app_posts_show', methods: ['GET'])]
     public function show(Posts $post): Response
     {
@@ -68,6 +68,7 @@ class PostsController extends AbstractController
             'post' => $post,
         ]);
     }
+    
     //Editer un post
     #[Route('/admin/post/edit/{id}', name: 'app_posts_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Posts $post, PostsRepository $postsRepository): Response

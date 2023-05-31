@@ -1,25 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap");
 nav {
+  margin: 0 auto 40px auto;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.07);
+}
+
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-ul {
-  margin-top: 20px !important;
+.nav-container ul {
+  margin: 20px;
   list-style-type: none;
+  padding: 0;
 }
 
-li {
+.nav-container li {
   list-style-type: none;
+  margin-right: 50px;
 }
 
-ul, .login-nav, a {
+.admin.nav {
+  margin-right: 0;
+}
+
+.nav-container ul, .login-nav, .nav-container a {
   display: flex;
   justify-content: space-between;
 }
@@ -30,17 +41,12 @@ ul, .login-nav, a {
   list-style-type: none;
 }
 
-li, a {
-  margin-right: 50px;
+.nav-container li, .nav-container a {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-}
-
-.separateur-menu {
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .login-nav.nav-un li a {
@@ -209,7 +215,7 @@ aside {
   text-align: center;
 }
 
-aside img {
+.picture-aboutMe {
   width: 333px;
   height: 222px;
   -o-object-fit: cover;
@@ -273,7 +279,7 @@ aside img {
   font-weight: 500;
   margin-bottom: 20px;
   max-width: 550px;
-  margin: 45px auto;
+  margin: 30px auto;
 }
 
 .date.article-recent span {
@@ -281,10 +287,10 @@ aside img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 210px;
+  width: 270px;
   margin: 0 auto;
   text-transform: uppercase;
-  font-size: 17px;
+  font-size: 15px;
   color: #999;
   letter-spacing: 1.2px;
 }
@@ -392,6 +398,98 @@ aside img {
   background-color: #ddd;
 }
 
+.container.article {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container.article h2 {
+  margin: 80px auto 30px auto;
+  font-family: "Prata", sans-serif;
+  font-size: 2.3em;
+  letter-spacing: 1.4px;
+  font-weight: normal;
+}
+
+.container.article .date {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 270px;
+  margin: 50px auto;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #999;
+  letter-spacing: 1.2px;
+}
+
+.container.article .date::before, .container.article .date::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.image.paysage.article {
+  width: 1200px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.avatar {
+  float: left;
+  border-radius: 50%;
+  margin-top: 13px;
+}
+
+.infos-user {
+  display: flex;
+}
+
+.infos-user img {
+  width: 38px;
+  height: 38px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.container.infos-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 3px;
+  margin-left: 10px;
+}
+
+.written {
+  font-family: "Lora", sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #888888;
+}
+
+.name.user {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+}
+
+.fa-envelope.article {
+  margin-right: 0;
+}
+
+.contenu.article {
+  font-family: "Lora", sans-serif;
+  font-size: 18px;
+  text-align: justify;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -411,4 +509,9 @@ section {
   display: flex;
   justify-content: space-between;
   width: 780px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }/*# sourceMappingURL=styles.css.map */

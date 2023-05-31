@@ -29,7 +29,7 @@
     font-weight: 500;
     margin-bottom: 20px;
     max-width: 550px;
-    margin: 45px auto;
+    margin: 30px auto;
 }
 
 .date.article-recent span{
@@ -37,10 +37,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 210px;
+    width: 270px;
     margin: 0 auto;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 15px;
     color: #999;
     letter-spacing: 1.2px;
 }
@@ -51,7 +51,6 @@
     height: 1px;
     background-color: #ccc;
 }
-
 
 .articles.recent.first img{
 width: 100%;

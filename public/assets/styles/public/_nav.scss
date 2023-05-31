@@ -1,20 +1,30 @@
 nav{
+    
+    margin: 0 auto 40px auto;
+    box-shadow: 0 0 28px rgba(0,0,0,.07);
+
+}
+.nav-container{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
 }
-ul{
+.nav-container ul{
     
-       margin-top:20px !important;
+       margin:20px;
        list-style-type: none;
-
-}
- li{
+       padding: 0;
+}   
+.nav-container li{
     list-style-type: none;
+    margin-right:50px;
 }
-ul, .login-nav, a{
+.admin.nav{
+    margin-right: 0;
+}
+.nav-container ul, .login-nav, .nav-container a{
 display:flex;
 justify-content: space-between;
 }
@@ -23,17 +33,14 @@ justify-content: space-between;
     color: #000;
     list-style-type: none;
 }
- li, a{
-    margin-right: 50px;
+.nav-container li, .nav-container a{
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
-.separateur-menu{
-    border-bottom: 1px solid #e5e5e5;
-}
+
 
 .login-nav.nav-un li a {
     margin-right: 0px;
