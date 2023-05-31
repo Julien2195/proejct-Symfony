@@ -44,12 +44,6 @@ object-fit: cover;
     justify-content: center;
     margin-right: 0;
 }
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 50px;
-  }
   
   .slider img {
     max-width: 100%;
@@ -104,11 +98,11 @@ object-fit: cover;
   }
   .btn-radio {
     position: relative;
-    top: -50px;
+    top: -47px;
     left: 49%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    padding: 5px;
+    padding: 0px 8px;
     border-radius: 50%;
     border: 2px solid #fff;
     z-index: 2;

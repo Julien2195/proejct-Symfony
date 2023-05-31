@@ -2,7 +2,7 @@ nav{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 ul{
@@ -17,8 +17,6 @@ ul{
 ul, .login-nav, a{
 display:flex;
 justify-content: space-between;
-
-
 }
 .login-nav a{
     text-decoration: none;
@@ -26,13 +24,17 @@ justify-content: space-between;
     list-style-type: none;
 }
  li, a{
-    margin-right: 20px;
+    margin-right: 50px;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 .separateur-menu{
     border-bottom: 1px solid #e5e5e5;
 }
 
+.login-nav.nav-un li a {
+    margin-right: 0px;
+}

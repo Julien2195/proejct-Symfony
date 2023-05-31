@@ -5,7 +5,7 @@
 @import './inscription';
 @import './a-propos';
 @import './article-recent';
-@import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
 
 *{
     box-sizing: border-box;
@@ -30,5 +30,4 @@ section{
   display: flex;
   justify-content: space-between;
   width: 780px;
-
 }

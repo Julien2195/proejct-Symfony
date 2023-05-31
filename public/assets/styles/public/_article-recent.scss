@@ -1,5 +1,5 @@
 
-.container.articles{
+.container.articles.recent{
     max-width: 780px;
     height: auto;
 }
@@ -9,26 +9,18 @@
     justify-content: space-between;
     font-family: "Lola",sans-serif;
     font-size: 20px;
+    font-weight: normal;
     text-transform: uppercase;
     letter-spacing: 2px;
     }
 
-.container.articles h3::before{
+.container.articles h3::before, .container.articles h3::after{
     content: "";
     width: 220px;
     height: 1px;
     background-color: #ccc;
     display: block;
     margin-right:20px;
-}
-
-.container.articles h3::after{
-    content: "";
-    width: 220px;
-    height: 1px;
-    background-color: #ccc;
-    display: block;
-    margin-left:20px;
 }
 
 .container.articles.recent h4{
@@ -45,28 +37,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 160px;
+    width: 210px;
     margin: 0 auto;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 17px;
     color: #999;
     letter-spacing: 1.2px;
 }
-.date.article-recent span::before{
+.date.article-recent span::before, .date.article-recent span::after{
     content: "";
     display: block;
     width: 30px;
     height: 1px;
-    background-color: #ddd;
+    background-color: #ccc;
 }
 
-.date.article-recent span::after{
-    content: "";
-    display: block;
-    width: 30px;
-    height: 1px;
-    background-color: #ddd;
-}
+
 .articles.recent.first img{
 width: 100%;
 height: auto;
@@ -113,7 +99,10 @@ margin-top: 30px;
 .read-more a:hover::after{
     width: 200px;
 }
-
+.icon a{
+    text-decoration: none;
+    margin:0 5px;
+}
 .fa-facebook-f, .fa-pinterest-p, .fa-envelope{
     font-size:24px;
     color: #a161bf;
@@ -122,6 +111,12 @@ margin-top: 30px;
     border-radius: 50%;
     padding: 8px 13px;
     
+}
+.fa-facebook-f:hover, .fa-pinterest-p:hover, .fa-envelope:hover{
+    background-color: #eba74d;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+
 }
 .fa-facebook-f{
     margin-left:35px;
@@ -141,7 +136,7 @@ margin-top: 30px;
 .icon.reseaux-sociaux::before, .icon.reseaux-sociaux::after{
     content:"";
     display:block;
-    width: 250px;
+    width: 100%;
     height: 1px;
     background-color: #ddd;
 }
