@@ -30,6 +30,7 @@ section{
 .section.articles{
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   width: 780px;
 }
 a{

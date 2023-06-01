@@ -20,7 +20,7 @@ class Posts
     #[ORM\Column(length: 50)]
     private ?string $auteur = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 60)]
     private ?string $titre = null;
 
     #[ORM\Column(length: 300)]
@@ -29,7 +29,7 @@ class Posts
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 60)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\AboutMe;
 use App\Entity\Posts;
 use App\Entity\User;
 use App\Form\InscriptionUserType;
 use App\Repository\AboutMeRepository;
 use App\Repository\PostsRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +23,28 @@ class SecurityController extends AbstractController
     {
         $aboutMe = $aboutMeRepository->findAll();
         $posts = $postsRepository->findAll();
+        $lastArticle = $postsRepository->findBy([], ['id' => 'DESC'], 1);
+        // Affchage de tous les articles sauf le dernier 
+        array_pop($posts);
+
         return $this->render('public/index.html.twig', [
             'aboutMe' => $aboutMe,
+            'lastArticle' => $lastArticle,
             'posts' => $posts,
 
+        ]);
+    }
+
+    //Montrer un post public
+    #[Route('post/{slug?}', name: 'app_post_read', methods: ['GET'])]
+    public function showPost(Posts $post): Response
+    {
+
+        $user = $this->getUser();
+        return $this->render('/public/post.html.twig', [
+            'post' => $post,
+            'slug' => $post->getSlug(),
+            'user' => $user,
         ]);
     }
 
@@ -88,17 +104,5 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-    }
-
-    //Montrer un post public
-    #[Route('post/{id}', name: 'app_post_show', methods: ['GET'])]
-    public function showPost(Posts $post, User $user): Response
-    {
-
-        return $this->render('/public/post.html.twig', [
-
-            'post' => $post,
-            'user' => $user
-        ]);
     }
 }

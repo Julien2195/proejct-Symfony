@@ -57,8 +57,7 @@ header {
   display: flex;
   justify-content: center;
 }
-
-img {
+header img {
   width: 230px;
   height: auto;
 }
@@ -72,7 +71,7 @@ img {
 
 .banniere {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .banniere::before {
@@ -251,14 +250,22 @@ aside {
 .container.articles.recent {
   max-width: 780px;
   height: auto;
+  margin-bottom: 30px;
 }
 
-.container.articles h3 {
+.container.articles.recent img {
+  width: 780px;
+  height: 585px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.container.articles.recent.first h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: "Lola", sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -266,11 +273,19 @@ aside {
 
 .container.articles h3::before, .container.articles h3::after {
   content: "";
-  width: 220px;
+  width: 200px;
   height: 1px;
   background-color: #ccc;
   display: block;
   margin-right: 20px;
+}
+
+.container.articles h3::before {
+  margin-right: 30px;
+}
+
+.container.articles h3::after {
+  margin-left: 30px;
 }
 
 .container.articles.recent h4 {
@@ -298,14 +313,14 @@ aside {
 .date.article-recent span::before, .date.article-recent span::after {
   content: "";
   display: block;
-  width: 30px;
+  width: 50px;
   height: 1px;
   background-color: #ccc;
 }
 
 .articles.recent.first img {
-  width: 100%;
-  height: auto;
+  width: 780px;
+  height: 585px;
   -o-object-fit: cover;
      object-fit: cover;
   margin-top: 30px;
@@ -317,6 +332,11 @@ aside {
   font-size: 18px;
   line-height: 2em;
   text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: justify;
 }
 
 .read-more a {
@@ -398,6 +418,64 @@ aside {
   background-color: #ddd;
 }
 
+.card-container {
+  max-width: 365px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.11);
+}
+
+.container-card {
+  max-width: 1300px;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 365px);
+  grid-gap: 47px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-img {
+  width: 100%;
+  height: 287px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-description {
+  width: 100%;
+  text-align: start;
+  padding: 25px;
+}
+
+.card-description h3 {
+  font-family: "Prata", sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.card-description.description {
+  font-family: "Poppins", sans-serif;
+  color: #666;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 10px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  padding: 0;
+}
+
+.card-date {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #999;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
 .container.article {
   max-width: 1200px;
   margin: 0 auto;
@@ -434,7 +512,7 @@ aside {
 
 .image.paysage.article {
   width: 1200px;
-  height: auto;
+  height: 855px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -508,6 +586,7 @@ section {
 .section.articles {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   width: 780px;
 }
 
