@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\InscriptionUserType;
 use App\Form\User1Type;
+use App\Repository\PostsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -109,7 +110,7 @@ class AdminController extends  AbstractController
     //Exporter les utilisateurs Excel
     #[Route('/admin/export/csv', name: 'app_user_export', methods: ['GET'])]
 
-    public function export(UserRepository $userRepository,): Response
+    public function export(UserRepository $userRepository,PostsRepository $postsRepository): Response
     {
         $users = $userRepository->findAll();
         $response = new Response();
@@ -119,7 +120,7 @@ class AdminController extends  AbstractController
         //configurer l'en-tête pour chaque celule
         $fp = fopen('php://output', 'w');
 
-        $head = ['id', 'email', 'roles'];
+        $head = ['id', 'email', 'roles', 'post'];
 
         fputcsv($fp, $head, ';');
         foreach ($users as $user) {

@@ -1,45 +1,47 @@
 <div class="container articles recent first">
 	<h3>Articles récents</h3>
-	{% for post in lastArticle %}
-		<h4>{{ post.titre }}</h4>
+	{% if pagination.currentPageNumber == 1 %}
+		{% for post in lastArticle %}
+			<h4>{{ post.titre }}</h4>
 
-		<div class="date article-recent first">
-			<span>{{ post.date|localizeddate }}</span>
+			<div class="date article-recent first">
+				<span>{{ post.date|localizeddate }}</span>
+			</div>
+
+			<img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.alt }}"/>
+
+			<div class="article first description">
+				{{ post.description }}
+			</div>
+
+			<div class="read-more">
+
+				<span>
+					<a href="{{ path('app_post_read', {'slug': post.slug}) }}">Lire l'article</a>
+
+				</span>
+
+			</div>
+		{% endfor %}
+
+		<div class="icon reseaux-sociaux">
+			<a href="#">
+				<i class="fa-brands fa-facebook-f"></i>
+			</a>
+			<a href="#">
+				<i class="fa-brands fa-pinterest-p"></i>
+			</a>
+			<a href="#">
+				<i class="fa-regular fa-envelope"></i>
+			</a>
 		</div>
-
-		<img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.alt }}"/>
-
-		<div class="article first description">
-			{{ post.description }}
-		</div>
-
-		<div class="read-more">
-
-			<span>
-				<a href="{{ path('app_post_read', {'slug': post.slug}) }}">Lire l'article</a>
-
-			</span>
-
-		</div>
-	{% endfor %}
-
-	<div class="icon reseaux-sociaux">
-		<a href="#">
-			<i class="fa-brands fa-facebook-f"></i>
-		</a>
-		<a href="#">
-			<i class="fa-brands fa-pinterest-p"></i>
-		</a>
-		<a href="#">
-			<i class="fa-regular fa-envelope"></i>
-		</a>
-	</div>
+	{% endif %}
 </div>
 
 
 <div class="container-card">
 
-	{% for post in posts %}
+	{% for post in pagination %}
 		<a href="{{path('app_post_read', {'slug' : post.slug }) }}">
 			<div class="card-container">
 				<img class="card-img" src="{{ asset('images/' ~ post.image) }}" alt="{{ post.titre }}">
@@ -50,5 +52,7 @@
 				</div>
 			</div>
 		</a>
+
 	{% endfor %}
 </div>
+{{ knp_pagination_render(pagination, 'pagination/materialize_pagination.html.twig' ) }}

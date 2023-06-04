@@ -8,6 +8,7 @@ use App\Form\InscriptionUserType;
 use App\Repository\AboutMeRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,19 +20,24 @@ class SecurityController extends AbstractController
 {
     #[Route(path: '/', name: "app_home")]
 
-    public function index(AboutMeRepository $aboutMeRepository, PostsRepository $postsRepository)
+    public function index(AboutMeRepository $aboutMeRepository, PostsRepository $postsRepository,  PaginatorInterface $paginator, Request $request): Response
     {
         $aboutMe = $aboutMeRepository->findAll();
         $posts = $postsRepository->findAll();
         $lastArticle = $postsRepository->findBy([], ['id' => 'DESC'], 1);
         // Affchage de tous les articles sauf le dernier 
         array_pop($posts);
+        $pagination = $paginator->paginate(
+            $posts,
+            $request->query->get('page', 1),
+            8
+        );
 
         return $this->render('public/index.html.twig', [
             'aboutMe' => $aboutMe,
             'lastArticle' => $lastArticle,
             'posts' => $posts,
-
+            'pagination' => $pagination,
         ]);
     }
 

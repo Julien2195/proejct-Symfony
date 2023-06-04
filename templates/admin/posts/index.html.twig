@@ -1,10 +1,11 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 
 {% block title %}Articles
+	<a href="{{ path('app_post_export') }}" class="btn btn-secondary">Export Excel</a>
+
 {% endblock %}
 
 {% block body %}
-
 
 	<table class="table">
 		<thead>

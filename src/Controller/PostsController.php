@@ -68,7 +68,7 @@ class PostsController extends AbstractController
             'post' => $post,
         ]);
     }
-    
+
     //Editer un post
     #[Route('/admin/post/edit/{id}', name: 'app_posts_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Posts $post, PostsRepository $postsRepository): Response
@@ -110,5 +110,30 @@ class PostsController extends AbstractController
         }
 
         return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('admin/posts/export', name: 'app_post_export', methods: ['GET'])]
+    public function exportExcel(PostsRepository $postsRepository)
+    {
+        $posts = $postsRepository->findAll();
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment;filename="post.csv"');
+
+        $out = fopen('php://output', 'w');
+        $head = ["id", 'auteur', 'titre', 'date de publication', 'date de creation'];
+        fputcsv($out, $head, ';');
+        foreach ($posts as $post) {
+            $userData = [
+                'id' => $post->getId(),
+                'auteur' => $post->getAuteur(),
+                'titre' => $post->getTitre(),
+                'published_at' =>$post->getPublishedAt()->format('d/m/Y'),
+                'date' => $post->getDate()->format('d/m/y')
+            ];
+            fputcsv($out, $userData, ';');
+        };
+        fclose($out);
+        return $response;
     }
 }
