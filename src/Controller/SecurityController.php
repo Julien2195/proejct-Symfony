@@ -23,23 +23,35 @@ class SecurityController extends AbstractController
     public function index(AboutMeRepository $aboutMeRepository, PostsRepository $postsRepository,  PaginatorInterface $paginator, Request $request): Response
     {
         $aboutMe = $aboutMeRepository->findAll();
-        $posts = $postsRepository->findAll();
-        $lastArticle = $postsRepository->findBy([], ['id' => 'DESC'], 1);
-        // Affchage de tous les articles sauf le dernier 
-        array_pop($posts);
+        $posts = $postsRepository->findBy([], ['id' => 'DESC']);
+
+        // Trouver le dernier article visible
+        $lastVisibleArticle = null;
+        foreach ($posts as $post) {
+            if ($post->isVisible()) {
+                $lastVisibleArticle = $post;
+                break;
+            }
+        }
+
+        // Supprimer le dernier article de la liste des articles
+        array_shift($posts);
+
+        // Pagination
         $pagination = $paginator->paginate(
             $posts,
             $request->query->get('page', 1),
-            8
+            6 // limite par page
         );
 
         return $this->render('public/index.html.twig', [
             'aboutMe' => $aboutMe,
-            'lastArticle' => $lastArticle,
+            'lastVisibleArticle' => $lastVisibleArticle,
             'posts' => $posts,
             'pagination' => $pagination,
         ]);
     }
+
 
     //Montrer un post public
     #[Route('post/{slug?}', name: 'app_post_read', methods: ['GET'])]

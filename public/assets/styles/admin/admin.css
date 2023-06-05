@@ -11763,6 +11763,22 @@ label .count-auteur {
 .d-flex {
   position: relative;
 }
+
+.show-wrapper {
+  display: flex;
+}
+
+.show-description,
+.show-content {
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+td img{
+  object-fit: cover;
+}
 span.btn {
   position: absolute;
 
@@ -11797,4 +11813,61 @@ span.position {
 }
 .textarea.aboutme {
   width: 500px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination li a i.material-icons-left::before {
+  content: "\f177";
+  font-family: FontAwesome;
+  font-size: 12px;
+  margin-right: 10px;
+}
+.pagination li a i.material-icons-right::after {
+  content: "\f178";
+  font-family: FontAwesome;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.pagination li {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+}
+
+.pagination li a {
+  display: inline-block;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+}
+.pagination li.disabled a,
+.pagination li.disabled a:hover {
+  color: #888;
+  cursor: default;
+  text-decoration: none;
+}
+
+.pagination li.active a {
+  background-color: #a161bf;
+  color: #fff;
+  border-radius: 50%;
+  padding: 8px 18px;
+}
+
+.pagination li a:hover {
+  color: #a161bf;
+}
+
+.pagination li a i.material-icons-left,
+.pagination li a i.material-icons-right {
+  vertical-align: middle;
+}
+.disable-hover:hover {
+  color: #fff !important;
+  cursor: default !important;
 }

@@ -23,7 +23,7 @@ class PostsType extends AbstractType
             ])
             ->add('titre', null, [
                 'attr' => [
-                    'class' => 'article-titre'
+                    'class' => 'article-titre',
                 ]
             ])
             ->add('description', TextareaType::class, [
@@ -35,7 +35,6 @@ class PostsType extends AbstractType
             ->add('content', CKEditorType::class, [
                 'attr' => [
                     'class' => 'article-content'
-
                 ]
             ])
 
@@ -47,8 +46,8 @@ class PostsType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => "Image",
-                'required' => true,
-                'data_class' => null,
+                'required' => false,
+                'mapped' => false,
             ]);
     }
 

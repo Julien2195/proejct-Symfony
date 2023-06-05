@@ -1,28 +1,26 @@
 <div class="container articles recent first">
 	<h3>Articles récents</h3>
 	{% if pagination.currentPageNumber == 1 %}
-		{% for post in lastArticle %}
-			<h4>{{ post.titre }}</h4>
+
+		{% if lastVisibleArticle %}
+			<h4>{{ lastVisibleArticle.titre }}</h4>
 
 			<div class="date article-recent first">
-				<span>{{ post.date|localizeddate }}</span>
+				<span>{{ lastVisibleArticle.date|localizeddate }}</span>
 			</div>
 
-			<img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.alt }}"/>
+			<img src="{{ asset('images/' ~ lastVisibleArticle.image) }}" alt="{{ lastVisibleArticle.alt }}"/>
 
 			<div class="article first description">
-				{{ post.description }}
+				{{ lastVisibleArticle.description }}
 			</div>
 
 			<div class="read-more">
-
 				<span>
-					<a href="{{ path('app_post_read', {'slug': post.slug}) }}">Lire l'article</a>
-
+					<a href="{{ path('app_post_read', {'slug': lastVisibleArticle.slug}) }}">Lire l'article</a>
 				</span>
-
 			</div>
-		{% endfor %}
+		{% endif %}
 
 		<div class="icon reseaux-sociaux">
 			<a href="#">
@@ -42,17 +40,18 @@
 <div class="container-card">
 
 	{% for post in pagination %}
-		<a href="{{path('app_post_read', {'slug' : post.slug }) }}">
-			<div class="card-container">
-				<img class="card-img" src="{{ asset('images/' ~ post.image) }}" alt="{{ post.titre }}">
-				<div class="card-description">
-					<h3>{{post.titre}}</h3>
-					<p class="card-description description">{{post.description}}</p>
-					<span class="card-date">{{post.date|localizeddate}}</span>
+		{% if post != lastVisibleArticle and post.visible or not loop.first %}
+			<a href="{{path('app_post_read', {'slug' : post.slug }) }}">
+				<div class="card-container">
+					<img class="card-img" src="{{ asset('images/' ~ post.image) }}" alt="{{ post.titre }}">
+					<div class="card-description">
+						<h3>{{post.titre}}</h3>
+						<p class="card-description description">{{post.description}}</p>
+						<span class="card-date">{{post.date|localizeddate}}</span>
+					</div>
 				</div>
-			</div>
-		</a>
-
+			</a>
+		{% endif %}
 	{% endfor %}
 </div>
 {{ knp_pagination_render(pagination, 'pagination/materialize_pagination.html.twig' ) }}

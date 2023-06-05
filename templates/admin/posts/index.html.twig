@@ -1,6 +1,8 @@
 {% extends 'admin/baseAdmin.html.twig' %}
 
 {% block title %}Articles
+	<a class="btn btn-success" href="{{ path('app_posts_new') }}">Créer un article</a>
+
 	<a href="{{ path('app_post_export') }}" class="btn btn-secondary">Export Excel</a>
 
 {% endblock %}
@@ -27,13 +29,22 @@
 				<tr>
 					<td>{{ post.id }}</td>
 					<td>{{ post.auteur }}</td>
-					<td><img src="{{asset('images/' ~ post.image)}}" alt="{{post.image}}" width="150px"></td>
+					<td><img src="{{asset('images/' ~ post.image)}}" alt="{{post.image}}" width="150px" height="150px"></td>
 					<td>{{ post.titre }}</td>
-					<td>{{ post.description }}</td>
-					<td>{{ post.content|raw }}</td>
+					<td>
+						<div class="show-wrapper">
+							<div class="show-description">{{ post.description }}</div>
+						</div>
+					</td>
+					<td>
+						<div class="show-wrapper">
+							<div class="show-content">{{ post.content|raw }}</div>
+						</div>
+					</td>
+
 					<td>{{ post.slug }}</td>
-					<td>{{ post.date ? post.date|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ post.visible ? 'Yes' : 'No' }}</td>
+					<td>{{  post.date|date('d/m/Y ') }}</td>
+					<td>{{ post.visible ? 'Oui' : 'Non' }}</td>
 
 					<td>
 						<a href="{{ path('app_posts_show', {'id': post.id}) }}">Voir</a>
@@ -41,21 +52,16 @@
 
 						<form method="post" action="{{ path('app_posts_delete', {'id': post.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
-							<button class="btn btn-danger">Delete</button>
+							<button class="btn btn-danger">Supprimer</button>
 						</form>
-
 					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="9">no records found</td>
 				</tr>
 			{% endfor %}
 
-		</tbody>
-	</table>
-	<a class="btn btn-success" href="{{ path('app_posts_new') }}">Créer un article</a>
 
-	{{knp_pagination_render(pagination)}}
+		</tbody>
+
+	</table>
+	{{ knp_pagination_render(pagination, 'pagination/materialize_pagination.html.twig' ) }}
 
 {% endblock %}

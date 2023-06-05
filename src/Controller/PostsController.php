@@ -8,6 +8,7 @@ use App\Repository\PostsRepository;
 use Cocur\Slugify\Slugify;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -75,6 +76,9 @@ class PostsController extends AbstractController
     {
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
+        $file = $post->getImage();
+        $post->setImage($file);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
@@ -86,6 +90,8 @@ class PostsController extends AbstractController
                     $newFilename
                 );
                 $post->setImage($newFilename);
+            } else {
+                $post->setImage($file);
             }
 
             $slugify = new Slugify();
@@ -128,7 +134,7 @@ class PostsController extends AbstractController
                 'id' => $post->getId(),
                 'auteur' => $post->getAuteur(),
                 'titre' => $post->getTitre(),
-                'published_at' =>$post->getPublishedAt()->format('d/m/Y'),
+                'published_at' => $post->getPublishedAt()->format('d/m/Y'),
                 'date' => $post->getDate()->format('d/m/y')
             ];
             fputcsv($out, $userData, ';');
